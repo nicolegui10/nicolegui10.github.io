@@ -5,7 +5,7 @@
   <thead>
     <td><b>Proveedor</b></td>
     <td><b>Descripcion</b></td>
-    <!--td><b>Estado del Pedido</b></td-->
+    <td><b>Estado del Pedido</b></td>
     <td><b>Total</b></td>
     <td class="text-center">Acciones</td>
   </thead>
@@ -18,7 +18,7 @@
     <td>{{pedido.importe}}</td>
     <td class="text-center">
       <a type="button" class="btn btn-success btn-gepro" ui-sref="pedido({pedidoId: pedido.id})">Ver</a>
-      <!--a type="button" class="btn btn-info" ng-click="finalizarPedido(pedido.id)" ng-show="pedido.estado != 'FINALIZADO'">Finalizar</a-->
+      <a type="button" class="btn btn-info" ng-click="finalizarPedido(pedido.id)" ng-show="pedido.estado !== 'FINALIZADO'">Finalizar</a>
       <a type="button" class="btn btn-danger" ng-click="eliminarPedido(pedido.id)">Eliminar</a>
     </td>
   </tr>

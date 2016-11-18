@@ -34,8 +34,8 @@
 </div>
 <br>
  <div class="col-xs-12 margin-bottom">
-    <!--button type="submit" class="btn btn-primary pull-right"
-        ng-click="finalizarPedido()">Finalizar</button-->
+    <button type="submit" class="btn btn-primary pull-right"
+        ng-click="finalizarPedido()" ng-show="pedido.estado !== 'FINALIZADO'">Finalizar</button>
     <button type="submit" class="btn btn-danger pull-right eliminar-btn"
         ng-click="eliminarPedido()">Eliminar</button>
     <button type="submit" class="btn btn-success pull-right eliminar-btn" print-btn>Imprimir</button>
