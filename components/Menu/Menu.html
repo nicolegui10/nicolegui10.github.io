@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" ui-sref="home">
+      <img src="resources/imagenes/icono.png" width="30" height="30" class="gep-inline align-top" alt="">
+      Gestion de Proveedores</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="alt btn-info" ng-show="authenticated"><a ui-sref="productos">Productos</a></li>
+        <li class="alt btn-info" ng-show="authenticated"><a ui-sref="proveedores">Proveedores</a></li>
+        <li class="alt btn-info" ng-show="authenticated"><a ui-sref="pedidos">Pedidos</a></li>
+        <li class="alt btn-info" ng-show="!authenticated"><a ui-sref="login">Login</a></li>
+        <li class="alt btn-danger" ng-show="authenticated"><a ng-click="logout()" ui-serf="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

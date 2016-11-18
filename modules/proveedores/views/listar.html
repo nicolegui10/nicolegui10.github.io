@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Proveedores <small><a class="btn btn-success btn-gepro pull-right" href="/#/proveedores/crear" role="button">Nuevo</a></small></h1>
+</div>
+<div class="alert alert-danger" ng-show="deleteError">
+  No se puede eliminar ya que tiene operaciones existentes.
+</div>
+<table class="table table-stripped">
+  <thead>
+    <td>CUIT</td>
+    <td>Nombre</td>
+    <td>Email</td>
+    <td>Telefono</td>
+    <td>Domicilio</td>
+    <td class="text-center">Acciones</td>
+  </thead>
+  <tr ng-repeat="proveedor in proveedores">
+    <td>{{ proveedor.cuit }}</td>
+    <td>{{ proveedor.nombre }}</td>
+    <td>{{ proveedor.email }}</td>
+    <td>{{ proveedor.telefono }}</td>
+    <td>{{ proveedor.domicilio }}</td>
+    <td class="text-center">
+      <div class="btn-group">
+        <!--a type="button" class="btn btn-info" ui-sref="editar-proveedor({proveedorId: proveedor.id})">Editar</a-->
+        <button type="submit" class="btn btn-danger" ng-click="eliminar(proveedor.cuit)">Eliminar</button>
+      </div>
+    </td>
+  </tr>
+</table>

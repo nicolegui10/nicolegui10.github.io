@@ -1,0 +1,55 @@
+body {
+    padding-top: 100px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.with-margin {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#carrito {
+    margin-top: 20px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td,
+.table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: inherit;
+}
+.nav.navbar-nav li a {
+    color: #FFFFFF !important;
+    border: solid 1 px white;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar.navbar-default {
+        background-color: #31708f;
+}
+
+.btn-gepro {
+    background-color: #31708f;
+    color: #FFFFFF;
+}
+
+.navbar-brand>img.gep-inline{
+    display: inline;
+}
+
+.eliminar-btn {
+    margin-right: 30px;
+}
+.margin-bottom {
+    margin-bottom: 20px;
+}

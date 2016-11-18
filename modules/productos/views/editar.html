@@ -1,0 +1,41 @@
+<h1>Editar Producto</h1>
+<form class="row" novalidate>
+  <div class="form-group col-xs-8">
+    <label for="descripcion">Descripcion</label>
+    <input type="text" class="form-control" id="descripcion" ng-maxlength="100" autocomplete="off"
+        name="descripcion" ng-model="producto.descripcion" ng-change="limpiar()" required>
+    <span class="help-block text-danger"
+        ng-show="form.descripcion.$dirty && form.descripcion.$invalid || errors.descripcion">
+      <span ng-show="form.descripcion.$dirty && form.descripcion.$error.required && !errors.descripcion"
+          class="text-danger">
+        Este campo es obligatorio
+      </span>
+      <span ng-show="form.descripcion.$dirty && form.descripcion.$error.maxlength" class="text-danger">
+        Este campo debe tener un maximo de 100 caracteres
+      </span>
+      <span ng-show="errors.descripcion && !cargo.descripcion" class="text-danger">
+        {{ errors.descripcion }}
+      </span>
+    </span>
+  </div>
+  <div class="form-group col-xs-4">
+    <label for="precio">Precio</label>
+    <input type="number" class="form-control" id="precio" min="0" autocomplete="off"
+        name="precio" ng-model="producto.precio" required>
+    <span class="help-block text-danger" ng-show="form.precio.$dirty && form.precio.$invalid">
+      <span ng-show="form.precio.$dirty && form.precio.$error.required" class="text-danger">
+        Este campo es obligatorio
+      </span>
+      <span ng-show="form.precio.$dirty && form.precio.$error.numer" class="text-danger">
+        Este campo debe ser un numero
+      </span>
+      <span ng-show="form.precio.$dirty && form.precio.$error.min" class="text-danger">
+        El minimo debe ser 0
+      </span>
+    </span>
+  </div>
+  <div class="col-xs-6">
+    <button type="submit" class="btn btn-primary"
+        ng-disabled="form.$invalid || form.$pristine" ng-click="editar()">Actualizar</button>
+  </div>
+</form>

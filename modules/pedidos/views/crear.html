@@ -1,0 +1,123 @@
+<h1>Nuevo Pedido</h1>
+<form class="row" id="form" name="form" novalidate>
+  <div class="form-group col-xs-6">
+    <label for="proveedor">Proveedor</label>
+    <ui-select ng-model="options.selected" theme="bootstrap" name="proveedor" on-select="loadProducts()" ng-disabled ="pedido.items.length > 0"required>
+      <ui-select-match>{{ $select.selected.nombre }}</ui-select-match>
+      <ui-select-choices repeat="proveedor.id as proveedor in proveedores | filter: $select.search">
+        <div ng-bind-html="proveedor.nombre | highlight: $select.search"></div>
+      </ui-select-choices>
+    </ui-select>
+    <span class="help-block text-danger" ng-show="form.proveedor.$dirty && form.proveedor.$invalid">
+      <span ng-show="form.proveedor.$dirty && form.proveedor.$error.required" class="text-danger">
+        Este campo es obligatorio
+      </span>
+    </span>
+  </div>
+  <div class="form-group col-xs-12 col-sm-12">
+      <label for="descripcion">Descripcion del Pedido</label>
+      <textarea class="form-control" id="descripcion" name="descripcion"
+          ng-model="pedido.descripcion" required></textarea>
+      <span class="help-block text-danger"
+          ng-show="form.descripcion.$dirty && form.descripcion.$invalid">
+        <span ng-show="form.descripcion.$dirty && form.descripcion.$error.required"
+            class="text-danger">
+          Este campo es obligatorio
+        </span>
+      </span>
+    </div>
+  <div class="panel panel-default col-xs-12 no-padding with-margin">
+    <div class="panel-heading">
+      <h3 class="panel-title">Linea</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-xs-4 form-group">
+        <label for="producto">Producto</label>
+        <ui-select ng-model="productoSeleccionado.selected" theme="bootstrap" name="producto" ng-disabled="productosNoCargados" required>
+          <ui-select-match>{{ $select.selected.descripcion }} {{$select.selected.marca}}</ui-select-match>
+          <ui-select-choices repeat="producto in productos | filter: $select.search">
+            <div ng-bind-html="producto.descripcion | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <span class="help-block text-danger" ng-show="form.producto.$dirty && form.producto.$invalid">
+          <span ng-show="form.producto.$dirty && form.producto.$error.required" class="text-danger">
+            Este campo es obligatorio
+          </span>
+        </span>
+      </div>
+      <div class="col-xs-3 form-group">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" class="form-control" name="cantidad" id="cantidad"
+            ng-model="productoSeleccionado.selected.cantidad" required>
+        <span class="help-block text-danger" ng-show="form.cantidad.$dirty && form.cantidad.$invalid">
+          <span ng-show="form.cantidad.$dirty && form.cantidad.$error.required" class="text-danger">
+            Este campo es obligatorio
+          </span>
+          <span ng-show="form.cantidad.$dirty && form.cantidad.$error.numer" class="text-danger">
+            Este campo debe ser un numero
+          </span>
+        </span>
+      </div>
+      <div class="col-xs-3 form-group">
+        <label for="precio">Precio</label>
+        <input type="number" class="form-control" name="precio" id="precio"
+            ng-model="productoSeleccionado.selected.precio" required>
+        <span class="help-block text-danger" ng-show="form.precio.$dirty && form.precio.$invalid">
+          <span ng-show="form.precio.$dirty && form.precio.$error.required" class="text-danger">
+            Este campo es obligatorio
+          </span>
+          <span ng-show="form.precio.$dirty && form.precio.$error.numer" class="text-danger">
+            Este campo debe ser un numero
+          </span>
+        </span>
+      </div>
+      <div class="form-group col-xs-2">
+        <label class="show">&nbsp;</label>
+        <a class="btn btn-success pull-right"
+            ng-disabled="form.producto.$invalid || form.cantidad.$invalid || form.precio.$invalid"
+            ng-click="agregar()">Agregar</a>
+      </div>
+      <div class="form-group col-xs-6"
+          ng-hide="form.producto.$invalid || form.cantidad.$invalid || form.precio.$invalid">
+        <label>Subtotal</label>
+        <p class="subtotal">{{productoSeleccionado.selected.precio * productoSeleccionado.selected.cantidad }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <button type="submit" class="btn btn-primary pull-right"
+        ng-disabled="form.proveedor.$invalid || !lineasProducto.length"
+        ng-click="crear()">Crear</button>
+  </div>
+</form>
+<table class="table" id="carrito" ng-show="lineasProducto.length">
+  <thead>
+    <th>Producto</th>
+    <th>Cantidad</th>
+    <th>Precio Unitario</th>
+    <th>Subtotal</th>
+    <th class="pull-right">Acciones</th>
+  </thead>
+  <tfoot>
+    <td></td>
+    <td></td>
+    <td><b class="pull-right">Total:</b></td>
+    <td class="total">{{ total }}</td>
+    <td></td>
+  </tfoot>
+  <tbody>
+    <tr ng-repeat="linea in lineasProducto">
+      <td>{{ linea.descripcion }}</td>
+      <td>{{ linea.cantidad }}</td>
+      <td>{{ linea.precio }}</td>
+      <td>{{ linea.cantidad * linea.precio }}</td>
+      <td>
+        <div class="btn-group pull-right">
+          <!--a class="btn btn-success" ng-click="sumar(linea.id)">+</a-->
+          <!--a class="btn btn-warning" ng-click="restar(linea.id)">-</a-->
+          <a class="btn btn-danger" ng-click="borrar(linea.id)">Borrar</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

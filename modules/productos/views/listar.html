@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>Productos <small><a class="btn btn-success pull-right" href="/#/productos/crear" role="button">Nuevo</a></small></h1>
+</div>
+<div class="alert alert-danger" ng-show="deleteError">
+  No se puede eliminar este producto ya que existen operaciones con el mismo.
+</div>
+<table class="table table-stripped">
+  <thead>
+    <td>Descripcion</td>
+    <td>Marca</td>
+    <td>Precio</td>
+    <td>Proveedor</td>
+    <td class="text-center">Acciones</td>
+  </thead>
+  <tr ng-repeat="producto in productos">
+    <td class="table-text">
+      <div>{{ producto.descripcion }}</div>
+    </td>
+    <td>{{ producto.marca }}</td>
+    <td>${{ producto.precio }}</td>
+    <td>{{ producto.proveedor }}</td>
+    <td class="text-center">
+      <div class="btn-group">
+        <button type="submit" class="btn btn-danger" ng-click="eliminar(producto.id)">Eliminar</button>
+      </div>
+    </td>
+  </tr>
+</table>
